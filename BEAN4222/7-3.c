@@ -1,8 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 int main(){
-	char **arr = NULL;
-	arr = (char**)malloc(sizeof(char*) * 5);
 	for ( int i = 0; i<5; i++){
 		arr[i] = (char*)malloc(sizeof(char) * 15);
 	}
@@ -17,7 +15,9 @@ int main(){
 			printf("%c", arr[j][i]);
 		}
 	}
-	free(arr[0]);
+	for (int i = 0; i < 5; i++) {
+    		free(arr[i]); 
+	}
 	free(arr);
 	return 0;
 }

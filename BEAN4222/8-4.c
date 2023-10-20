@@ -5,7 +5,7 @@ int main(){
 	scanf("%d",&time);
 	rst = 4;
 	for(int i=1;i<pow(2,time-1)+1;i*=2){
-		tmp = (4*i)+((4+(3*(i-1)))*(i-1))+1;
+		tmp = 3*(i)*(i)+2*i;
 		rst+=tmp;
 	}
 	printf("%d",rst);
