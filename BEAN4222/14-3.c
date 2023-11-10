@@ -5,7 +5,7 @@
 int hash(char *call){
     int index;
     index = 0;
-    for (int i=1;i<6;i++){
+    for (int i=1;i<5;i++){
         index+=call[i-1]*i;
     }
     index %= 1000000;
@@ -34,7 +34,7 @@ int main(){
     int call;
     scanf("%d",&call);
     for(int i =0;i<call;i++){
-        char str[5],type[5];
+        char str[6],type[6];
         scanf("%s %s",str,type);
         if (strcmp(type,"enter") == 0){
             append(arr, str);
