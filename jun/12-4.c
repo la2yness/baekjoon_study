@@ -9,9 +9,9 @@
 #include <stdio.h>
 
 int main(void)  {
-	int n, m, sn = 8, sm = 8, arr[50][50] = {0,};
-	char board;
-	int a = 0, b = 0, check = 119, cnt = 0, min = 2500;
+	int n, m, sn = 8, sm = 8;
+	char arr[50][50] = {0,}, board, check = 'W';
+	int a = 0, b = 0, ac = 0, bc = 0, cnt = 0, min = 2500;
 	
 	scanf("%d%d", &n, &m);
 
@@ -23,58 +23,58 @@ int main(void)  {
 	}
 
 	while(sn <= n)  {
-		b = 0;
+		bc = 0;
 		sm = 8;
 		while(sm <= m)  {
-			for(a; a < sn; a++)  {
-				for(b; b < sm; b++)  {
+			for(a = ac; a < sn; a++)  {
+				for(b = bc; b < sm; b++)  {
 					if(arr[a][b] != check)
 						cnt++;
 	
-					if(check % 2 == 1)
-						check = 98;
+					if(check == 'W')
+						check = 'B';
 					else
-						check = 119;
+						check = 'W';
 				}
 			}
 		if(cnt < min)
 			min = cnt;
 		cnt = 0;
 
-		b++;
+		bc++;
 		sm++;
 		}
-	a++;
+	ac++;
 	sn++;
 	}
 
-	a = 0;
-	sn = 0;
-	check = 98;
+	ac = 0;
+	sn = 8;
+	check = 'B';
 
 	while(sn <= n)  {
-                b = 0;
+                bc = 0;
                 sm = 8;
                 while(sm <= m)  {
-                        for(a; a < sn; a++)  {
-                                for(b; b < sm; b++)  {
+                        for(a = ac; a < sn; a++)  {
+                                for(b = bc; b < sm; b++)  {
                                         if(arr[a][b] != check)
                                                 cnt++;
 
-                                        if(check % 2 != 1)
-                                                check = 98;
+                                        if(check == 'B')
+                                                check = 'W';
                                         else
-                                                check = 119;
+                                                check = 'B';
                                 }
                         }
                 if(cnt < min)
                         min = cnt;
                 cnt = 0;
 
-                b++;
+                bc++;
                 sm++;
                 }
-        a++;
+        ac++;
         sn++;
         }
 	
