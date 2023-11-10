@@ -1,73 +1,69 @@
-#include <stdio.h>
-#include <stdlib.h>
- 
-typedef struct Node 
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct Node
 {
-    int data;
-    struct Node *next;
+	int data;
+	struct Node *next;
 }Node;
- 
- 
-typedef struct Queue 
+typedef struct Queue
 {
-    Node *front;
-    Node *rear; 
-    int count;
+	Node *front;
+	Node *rear;
+	int count;
 }Queue;
- 
-void initQueue(Queue *queue)
+void initQueue(Queue *queue)
 {
-    queue->front = queue->rear = NULL; 
-    queue->count = 0;   
+	queue->front = queue->rear = NULL;
+	queue->count = 0;
 }
- 
-int isEmpty(Queue *queue)
+
+int isEmpty(Queue *queue)
 {
-    return queue->count == 0;   
+	return queue->count == 0;
 }
- 
-void enqueue(Queue *queue, int data)
+
+void enqueue(Queue *queue, int data)
 {
-    Node *newNode = (Node *)malloc(sizeof(Node)); 
-    newNode->data = data;
-    newNode->next = NULL;
- 
-    if (isEmpty(queue))  
-    {
-        queue->front = newNode;       
-    }
-    else  
-    {
-        queue->rear->next = newNode;   
-    }
-    queue->rear = newNode;   
-    queue->count++;   
+	Node *newNode = (Node *)malloc(sizeof(Node));
+	newNode->data = data;
+	newNode->next = NULL;
+
+	if (isEmpty(queue)){
+		queue->front = newNode;
+	}
+	else{
+		queue->rear->next = newNode;;
+	}
+	queue->rear = newNode;
+	queue->count++;
+} 
+int dequeue(Queue *queue)
+{
+	int data;
+	Node *ptr;
+	if (isEmpty(queue)){
+		printf("Error : Queue is empty!\n");
+		return 0;
+	}
+	ptr = queue->front;
+	data = ptr->data;
+	queue->front = ptr->next;
+	free(ptr);
+	queue->count--;
+	return data;
 }
- 
-int dequeue(Queue *queue)
+
+int main(void)
 {
-    int data;
-    Node *ptr;
-    if (isEmpty(queue))   
-    {
-        printf("Error : Queue is empty!\n");
-        return 0;
-    }
-    ptr = queue->front; 
-    data = ptr->data;    
-    queue->front = ptr->next;  
-    free(ptr);    
-    queue->count--;  
-    
-    return data;
-}
- 
-int main(void)
-{
-    int i;
-    Queue queue;
- 
-    initQueue(&queue);
-    
-    return 0;
+	int i;
+	Queue queue;
+	initQueue(&queue);
+	enqueue(&queue,10);
+	enqueue(&queue,20);
+	enqueue(&queue,30);
+	printf("%d\n",dequeue(&queue));
+	printf("%d\n",dequeue(&queue));
+	printf("%d\n",dequeue(&queue));
+
+	return 0;
 }
